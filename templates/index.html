@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename = 'style.css')}}">
+     <!-- jQuery CDN ver3 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <title>GPS_MAP</title>
+</head>
+<body>
+    <header>
+        <p>GPS MAPPING</p>
+    </header>
+    <main>
+        <article>
+            <p class="ex-title">アプリケーションの説明</p>
+            <p class="ex-content">GPSを用いてユーザーの連続的な位置情報を地図上にプロットして<br/>可視化するアプリケーションです。
+            <br/>STARTボタンを押すと測定を開始し、5秒毎にデータを取得します。測定が終了したいときはFINISHボタンを押してください。
+            <br/>この後、make mapをクリックすると地図が表示されます。</p>
+        </article>
+        <div class="main-content">
+            <input type="button" value="START" id="btnTimer">
+            <input type="button" value="FINISH" id="btnCancel">
+
+            <form action="/output" method="POST">
+                <input type="text" name="coord_list" id="coord"/>
+                <table>
+                    <tr><th>取得した回数：</th><td id="count"></td></tr>
+                </table>
+                <span id="box">測定中...</span>
+                <p><input type="submit" value="make map" id="btnSubmit"></p>
+            </form>
+        </div>
+        <article>
+            <p class="ex-title">利用方法</p>
+            <p class="ex-content">こちらのアプリケーションはPythonのOSSであるPlotlyを用いて作成されています。
+                <br/>研究や商用で使うことができます。<br/>出久根　GitHub:https://github.com/izukune
+            </p>
+        </article>
+    </main>
+
+    <script type="text/javascript">
+        function setLocation(pos){
+            lat = pos.coords.latitude;
+            lon = pos.coords.longitude;
+            thisCoord = [lat, lon]
+        
+            coord_list.push(thisCoord)
+            document.getElementById( "coord" ).value = coord_list ;
+            document.getElementById("count").innerHTML = String(output_count);
+        }
+        
+        // エラー時に呼び出される関数
+        function showErr(err){
+            switch(err.code){
+                case 1 : alert("位置情報の利用が許可されていません"); break;
+                case 2 : alert("デバイスの位置が判定できません"); break;
+                case 3 : alert("タイムアウトしました"); break;
+                default : alert(err.message);
+            }
+        }
+        
+        function getLocation(){
+            // geolocation に対応しているか否かを確認
+            if("geolocation" in navigator){
+                var opt = {
+                    "enableHighAccuracy": true,
+                    "timeout": 10000,
+                    "maximumAge": 0,
+                };
+                navigator.geolocation.getCurrentPosition(setLocation, showErr, opt);
+                console.log("get")
+                sleep(5000);
+            }else{
+                alert("ブラウザが位置情報取得に対応していません");
+            }
+        }
+
+        function sleep(waitMsec) {
+            var startMsec = new Date();
+            while (new Date() - startMsec < waitMsec);
+        }
+
+        </script>
+
+        <script>
+            let coord_list=[]
+            let count = 5;
+            let output_count = 1;
+            let timerid;
+            let btnTimer = document.getElementById('btnTimer');
+            btnTimer.addEventListener('click', function(){
+                getLocation()
+                output_count += 1;
+                document.getElementById("btnCancel").style.display = "inline-block" ;
+                document.getElementById("box").style.opacity = "1" ;
+                timerid = window.setInterval(function(){
+                    getLocation()
+                    output_count += 1;
+                    count += 5;
+                }, 5000);
+            });
+            
+            let btnCancel = document.getElementById('btnCancel');
+            btnCancel.addEventListener('click', function(){
+                document.getElementById("btnCancel").style.opacity = "0.5" ;
+                document.getElementById("btnSubmit").style.display = "inline-block" ;
+                document.getElementById("box").style.opacity = "0";
+                window.clearInterval(timerid);
+                console.log('setIntervalはキャンセルされました');
+            });
+        </script>
+    
+    
+</body>
+</html>

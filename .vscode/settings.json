@@ -1,0 +1,12 @@
+{
+    "liveSassCompile.settings.generateMap": false,
+    "liveSassCompile.settings.formats": [
+
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/static"
+        }
+    ],
+    "python.pythonPath": "/Users/izukuneyoshiki/.pyenv/versions/3.8.6/envs/data/bin/python"
+}

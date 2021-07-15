@@ -1,0 +1,206 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+body {
+  width: 100vw;
+}
+
+body header {
+  height: 50px;
+  width: 100vw;
+  background-image: -webkit-gradient(linear, left top, right top, from(#690bc0), to(#6800ad));
+  background-image: linear-gradient(90deg, #690bc0, #6800ad);
+}
+
+body header p {
+  line-height: 50px;
+  color: white;
+  padding-left: 50px;
+}
+
+body main {
+  padding: 20px;
+}
+
+body article {
+  margin: 50px;
+  background-color: azure;
+}
+
+body article .ex-title {
+  font-size: 20px;
+}
+
+body article .ex-content {
+  font-size: 14px;
+}
+
+body .main-content {
+  width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body .main-content #btnTimer {
+  display: inline-block;
+  border-radius: 5%;
+  /* 角丸       */
+  font-size: 12pt;
+  /* 文字サイズ */
+  text-align: center;
+  /* 文字位置   */
+  cursor: pointer;
+  /* カーソル   */
+  padding: 8px 20px;
+  /* 余白       */
+  background: #7f007f;
+  /* 背景色     */
+  color: #ffffff;
+  /* 文字色     */
+  line-height: 1em;
+  /* 1行の高さ  */
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  /* なめらか変化 */
+  -webkit-box-shadow: 6px 6px 17px #666666;
+          box-shadow: 6px 6px 17px #666666;
+  /* 影の設定 */
+  border: 2px solid #7f007f;
+  /* 枠の指定 */
+}
+
+body .main-content #btnTimer:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  /* カーソル時の影消去 */
+  color: #7f007f;
+  /* 背景色     */
+  background: #ffffff;
+  /* 文字色     */
+}
+
+body .main-content #btnCancel {
+  display: none;
+  border-radius: 5%;
+  /* 角丸       */
+  font-size: 12pt;
+  /* 文字サイズ */
+  text-align: center;
+  /* 文字位置   */
+  cursor: pointer;
+  /* カーソル   */
+  padding: 8px 20px;
+  /* 余白       */
+  margin: 10px;
+  background: #7f007f;
+  /* 背景色     */
+  color: #ffffff;
+  /* 文字色     */
+  line-height: 1em;
+  /* 1行の高さ  */
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  /* なめらか変化 */
+  -webkit-box-shadow: 6px 6px 17px #666666;
+          box-shadow: 6px 6px 17px #666666;
+  /* 影の設定 */
+  border: 2px solid #7f007f;
+  /* 枠の指定 */
+  opacity: 0.5;
+}
+
+body .main-content #btnCancel:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  /* カーソル時の影消去 */
+  color: #7f007f;
+  /* 背景色     */
+  background: #ffffff;
+  /* 文字色     */
+}
+
+body .main-content form #coord {
+  opacity: 0;
+}
+
+body .main-content form #btnSubmit {
+  display: none;
+  border-radius: 5%;
+  /* 角丸       */
+  font-size: 12pt;
+  /* 文字サイズ */
+  text-align: center;
+  /* 文字位置   */
+  cursor: pointer;
+  /* カーソル   */
+  padding: 8px 20px;
+  /* 余白       */
+  margin: 10px;
+  background: #7f007f;
+  /* 背景色     */
+  color: #ffffff;
+  /* 文字色     */
+  line-height: 1em;
+  /* 1行の高さ  */
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  /* なめらか変化 */
+  -webkit-box-shadow: 6px 6px 17px #666666;
+          box-shadow: 6px 6px 17px #666666;
+  /* 影の設定 */
+  border: 2px solid #7f007f;
+  /* 枠の指定 */
+}
+
+body .main-content form #btnSubmit:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  /* カーソル時の影消去 */
+  color: #7f007f;
+  /* 背景色     */
+  background: #ffffff;
+  /* 文字色     */
+}
+
+body .main-content form span {
+  display: inline-block;
+  width: 100px;
+  margin: 50px;
+  height: 50px;
+  margin: 30px;
+}
+
+body .main-content form #box {
+  -webkit-animation: 3s linear infinite rotation;
+          animation: 3s linear infinite rotation;
+  opacity: 0;
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+  }
+}
